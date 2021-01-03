@@ -2,7 +2,7 @@ package com.oops;
 
 import processing.core.PApplet;
 
-public class MovingBall extends PApplet {
+public class MovingBall {
 
     private PApplet sketch;
     private int positionX;
