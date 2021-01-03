@@ -3,20 +3,19 @@ package com.oops;
 import processing.core.PApplet;
 
 public class Main extends PApplet {
-    public static final int WIDTH = 640;
-    public static final int HEIGHT = 500;
     public static final int DIAMETER = 10;
-    public static final int BALL_SPACING = HEIGHT / 5;
+    public int BALL_SPACING;
     MovingBall ball1, ball2, ball3, ball4;
 
-    public static void main(String str[]) {
+    public static void main(String[] str) {
         PApplet.main("com.oops.Main", str);
     }
 
     @Override
     public void settings() {
         super.settings();
-        size(WIDTH, HEIGHT);
+        size(SketchDimensions.getWIDTH(), SketchDimensions.getHEIGHT());
+        BALL_SPACING = SketchDimensions.getHEIGHT() / 5;
         int heightCounter = 1;
         ball1 = new MovingBall(this, 0, BALL_SPACING * heightCounter++, DIAMETER, DIAMETER);
         ball2 = new MovingBall(this, 0, BALL_SPACING * heightCounter++, DIAMETER, DIAMETER);
