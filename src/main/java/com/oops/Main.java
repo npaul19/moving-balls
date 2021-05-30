@@ -2,10 +2,15 @@ package com.oops;
 
 import processing.core.PApplet;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Main extends PApplet {
+    public static final int WIDTH = 640;
+    public static final int HEIGHT = 500;
     public static final int DIAMETER = 10;
     public int BALL_SPACING;
-    MovingBall ball1, ball2, ball3, ball4;
+    ArrayList<Ball> balls = new ArrayList<>();
 
     public static void main(String[] str) {
         PApplet.main("com.oops.Main", str);
@@ -14,13 +19,14 @@ public class Main extends PApplet {
     @Override
     public void settings() {
         super.settings();
-        size(SketchDimensions.getWIDTH(), SketchDimensions.getHEIGHT());
-        BALL_SPACING = SketchDimensions.getHEIGHT() / 5;
+
+        size(WIDTH, HEIGHT);
+        BALL_SPACING = HEIGHT / 5;
         int heightCounter = 1;
-        ball1 = new MovingBall(this, 0, BALL_SPACING * heightCounter++, DIAMETER, DIAMETER);
-        ball2 = new MovingBall(this, 0, BALL_SPACING * heightCounter++, DIAMETER, DIAMETER);
-        ball3 = new MovingBall(this, 0, BALL_SPACING * heightCounter++, DIAMETER, DIAMETER);
-        ball4 = new MovingBall(this, 0, BALL_SPACING * heightCounter, DIAMETER, DIAMETER);
+        int speedCounter = 1;
+
+        for(int idx = 0; idx < 5; idx++)
+            balls.add(new Ball(0, BALL_SPACING * heightCounter++, speedCounter++, DIAMETER, DIAMETER));
     }
 
     @Override
@@ -30,10 +36,9 @@ public class Main extends PApplet {
 
     @Override
     public void draw() {
-        int speedCounter = 1;
-        ball1.drawMovingBall(speedCounter++);
-        ball2.drawMovingBall(speedCounter++);
-        ball3.drawMovingBall(speedCounter++);
-        ball4.drawMovingBall(speedCounter);
+        for(int idx = 0; idx < 5; idx++){
+            balls.get(idx).draw(this);
+            balls.get(idx).move(this);
+        }
     }
 }
